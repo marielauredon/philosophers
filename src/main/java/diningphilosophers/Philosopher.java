@@ -22,7 +22,20 @@ public class Philosopher
 
     @Override
     public void run() {
-
+        while (running) {
+            try {
+                myLeftStick.take();
+                myRightStick.take();
+                eat();
+                System.out.println("Je mange.");
+                myLeftStick.release();
+                myRightStick.release();
+                think();
+                System.out.println("Je réfléchis.");
+            } catch (InterruptedException ex) {
+                break;
+            }
+        }
     }
 
     // Permet d'interrompre le philosophe "proprement" :
